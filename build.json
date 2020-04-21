@@ -1,0 +1,49 @@
+{
+  "modeConfig": {
+    "default": {
+      "define": {},
+      "vendor": false
+    },
+    "local": {
+      "define": {},
+      "vendor": false
+    },
+    "dev": {
+      "define": {},
+      "vendor": false
+    },
+    "daily": {
+      "define": {},
+      "vendor": false
+    },
+    "prod": {
+      "define": {},
+      "vendor": true
+    }
+  },
+  "plugins": [
+    [
+      "build-plugin-fusion",
+      {
+        "themePackage": "@alifd/theme-design-pro",
+        "icon-font-path": "'/icon-font/icon'",
+        "font-custom-path": "'/font/'"
+      }
+    ],
+    [
+      "build-plugin-moment-locales",
+      {
+        "locales": [
+          "zh-cn"
+        ]
+      }
+    ],
+    [
+      "build-plugin-css-assets-local", 
+      {
+      "outputPath": "assets",
+      "relativeCssPath": "../",
+      "activeInDev": "true"
+    }]
+  ]
+}

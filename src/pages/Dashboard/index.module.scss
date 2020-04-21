@@ -1,0 +1,39 @@
+.container {
+  background-color: '#000';
+  color: '#fff';
+  position: 'relative';
+  height: '100vh';
+}
+
+.main {
+  padding: '20px';
+  display: 'flex';
+  flex-direction: 'row';
+  height: '100vh';
+}
+
+.side {
+  z-index: 1;
+  width: '320px';
+  padding: '10px';
+}
+
+.middle {
+  flex: 1,
+}
+
+.header {
+  text-align: 'center';
+}
+
+.title {
+  font-size: '36px';
+  margin: 0;
+}
+
+.bg{
+  position: 'absolute';
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
