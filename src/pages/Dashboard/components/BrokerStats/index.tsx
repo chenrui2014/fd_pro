@@ -10,8 +10,8 @@ export default function BrokerStats(){
   }, [brokerStatsDispatchers]);
 
   return (
-    <Card free>
-      <Card.Header title="消息(接收/发送)"/>
+    <Card free className={styles.stats_bg}>
+      <Card.Header title="消息(接收/发送)" className={styles.stats_bg}/>
       <Card.Content>
         <span className={styles.online}>{brokerStats.data.metrics.byteSentCount}</span>/<span>{brokerStats.data.metrics.byteReceivedCount}</span>
       </Card.Content>

@@ -12,8 +12,8 @@ export default function PeripheralStats(){
   }, [peripheralCountDispatchers]);
 
   return (
-    <Card free>
-      <Card.Header title="桌牌终端"/>
+    <Card free className={styles.stats_bg}>
+      <Card.Header title="桌牌终端" className={styles.stats_bg}/>
       <Card.Content>
         <span className={styles.online}>{peripheralCount.data.online}</span>/<span>{peripheralCount.data.total}</span>
       </Card.Content>

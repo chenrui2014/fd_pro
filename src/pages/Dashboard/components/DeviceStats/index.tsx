@@ -10,8 +10,8 @@ export default function DeviceStats(){
   }, [deviceCountDispatchers]);
 
   return (
-    <Card free>
-      <Card.Header title="设备"/>
+    <Card free className={styles.stats_bg}>
+      <Card.Header title="设备" className={styles.stats_bg}/>
       <Card.Content>
         <span className={styles.online}>{deviceCount.data.online}</span>/<span>{deviceCount.data.total}</span>
       </Card.Content>
