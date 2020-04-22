@@ -1,6 +1,6 @@
 import { request,IRootDispatch } from 'ice';
 
-interface IPeripheralCount {
+export interface IPeripheralCount {
   offline: number;
   online: number;
   total: number;

@@ -1,22 +1,16 @@
-import React,{useEffect} from 'react';
-import {store as appStore} from 'ice';
-import { Card } from '@alifd/next';
+import React from 'react';
 import styles from './index.module.scss';
+import {IPeripheralCount} from '../../../../models/peripheralCount'
 
-export default function PeripheralStats(){
-  
-  const [peripheralCount, peripheralCountDispatchers] = appStore.useModel('peripheralCount');
+interface IPeripheralStatsProps {
+  title: string;
+  data: IPeripheralCount;
+}
+export default function PeripheralStats(props: IPeripheralStatsProps){
 
-  useEffect(() => {
-    peripheralCountDispatchers.fetchPeripheralCount();
-  }, [peripheralCountDispatchers]);
+  const {title, data } = props;
 
   return (
-    <Card free className={styles.stats_bg}>
-      <Card.Header title="桌牌终端" className={styles.stats_bg}/>
-      <Card.Content>
-        <span className={styles.online}>{peripheralCount.data.online}</span>/<span>{peripheralCount.data.total}</span>
-      </Card.Content>
-    </Card>
+    <div className={styles.stats_bg}><span>{title}</span>: <span className={styles.online}>{data.online}</span>/<span>{data.total}</span></div>
   );
 }

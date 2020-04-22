@@ -1,6 +1,6 @@
 import { request, IRootDispatch } from 'ice';
 
-interface IMetrics {
+export interface IMetrics {
   messageSentCount: number;
   messageReceivedCount: number;
   packetSentCount: number;

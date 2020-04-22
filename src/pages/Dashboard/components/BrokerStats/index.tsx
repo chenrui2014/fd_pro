@@ -1,20 +1,19 @@
-import React,{useEffect} from 'react';
-import {store as appStore} from 'ice';
-import { Card } from '@alifd/next';
+import React from 'react';
 import styles from './index.module.scss';
+import {IMetrics} from '../../../../models/brokerStats'
 
-export default function BrokerStats(){
-  const [brokerStats, brokerStatsDispatchers] = appStore.useModel('brokerStats');
-  useEffect(() => {
-    brokerStatsDispatchers.fetchBrokerStats();
-  }, [brokerStatsDispatchers]);
+interface IBrokerStatsProps {
+  title: string;
+  data: IMetrics;
+}
+export default function BrokerStats(props: IBrokerStatsProps){
+  // const [brokerStats, brokerStatsDispatchers] = appStore.useModel('brokerStats');
+  const { title, data } = props;
+  // useEffect(() => {
+  //   brokerStatsDispatchers.fetchBrokerStats();
+  // }, [brokerStatsDispatchers]);
 
   return (
-    <Card free className={styles.stats_bg}>
-      <Card.Header title="消息(接收/发送)" className={styles.stats_bg}/>
-      <Card.Content>
-        <span className={styles.online}>{brokerStats.data.metrics.byteSentCount}</span>/<span>{brokerStats.data.metrics.byteReceivedCount}</span>
-      </Card.Content>
-    </Card>
+    <div className={styles.stats_bg}><span>{title}</span>: <span className={styles.online}>{data.byteSentCount}</span>/<span>{data.byteReceivedCount}</span></div>
   );
 }

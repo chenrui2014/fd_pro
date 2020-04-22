@@ -4,6 +4,8 @@
 }
 
 .stats_bg {
+    z-index: 999;
+    display: inline;
     background-color: #1b253c;
     color: #ffffff;
 }
