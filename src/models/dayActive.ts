@@ -24,7 +24,7 @@ export default {
   effects: (dispatch: IRootDispatch) =>({
     async fetchDayActive(params: IDayActiveParams) {
       const res = await request({
-        url:'/statistics/overview/active/device/count',
+        url:'/v1/statistics/overview/active/device/count',
         params
       });
       if (res.status === 'ok') {

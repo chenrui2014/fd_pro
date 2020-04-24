@@ -23,7 +23,7 @@ export default {
   },
   effects: (dispatch: IRootDispatch) => ({
     async fetchPeripheralDayActive(params: IPeripheralActiveParams) {
-      const res = await request({url:'/statistics/overview/active/peripheral/count', params});
+      const res = await request({url:'/v1/statistics/overview/active/peripheral/count', params});
       if (res.status === 'ok') {
         dispatch.peripheralDayActive.update({data:res.data});
       }

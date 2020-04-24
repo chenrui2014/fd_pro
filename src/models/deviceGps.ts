@@ -6,19 +6,28 @@ interface IDeviceGps {
   time: number;
 }
 
+interface IDeviceGpsParams {
+  sn: string;
+}
+
 interface IDeviceGpsState {
   data: IDeviceGps;
 }
 
 export default {
   state: {
-    pos: '',
-    sn:'',
-    time: 0,
+    data:[{
+      pos: '{"lat":40.57,"lng":116.9}',
+      sn:'test',
+      time: 0,
+    }]
   },
   effects: (dispatch: IRootDispatch) => ({
-    async fetchDeviceGps() {
-      const res = await request('/statistics/live/device/gps');
+    async fetchDeviceGps(params?: IDeviceGpsParams) {
+      const res = await request({
+        url: '/v1/statistics/live/device/gps', 
+        params
+      });
       dispatch.deviceGps.update({data: res.data});
     },
   }),
