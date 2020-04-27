@@ -171,21 +171,6 @@ export default function DeviceBarChart(props: IDeviceBarChartProps){
       symbolClip: true,
       symbolPosition: 'end',
       symbol: 'rect',
-      // symbol: 'path://M0 0 L0 60 L225 60 L300 0 Z',
-      markPoint: {
-        data: coordData,
-        symbolSize: [15, 15],
-        symbolOffset: [-0.5, 0],
-        z: 3,
-        label: {
-          normal: {
-            show: false
-          }
-        },
-        symbolClip: true,
-        symbol: 'path://M 300 100 L 100 100 L 100 300 z',
-
-      }
     },
     {
       z: 6,
@@ -217,28 +202,6 @@ export default function DeviceBarChart(props: IDeviceBarChartProps){
       },
       symbolClip: true,
       symbol: 'rect',
-      markPoint: {
-        data: coordData2,
-        symbolSize: [15, 15],
-        symbolOffset: [-0.5, 0],
-        label: {
-          normal: {
-            show: false
-          }
-        },
-        itemStyle: {
-          normal: {
-            color: '#00abc5',
-            opacity: 0.085
-          }
-        },
-        symbolClip: true,
-        symbol: 'path://M 300 100 L 100 100 L 100 300 z',
-        // animationDelay:100
-        // animationDuration:1200
-        // animation:false
-        // animationDurationUpdate :1000
-      }
     },
     ]
   }

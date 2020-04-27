@@ -1,5 +1,10 @@
 import { request, IRootDispatch } from 'ice';
 
+
+interface ITopAlarmLevelParams {
+  top: number;
+  level: string;
+}
 interface ITopAlarmLevel {
   count: number;
   alertName: string;
@@ -12,15 +17,18 @@ interface ITopAlarmLevelState {
 
 export default {
   state: {
-    data:{
+    data:[{
       count: 0,
       alertName:'',
       time: 0,
     }
-  },
+    ]},
   effects: (dispatch: IRootDispatch) => ({
-    async fetchTopAlarmLevel() {
-      const res = await request('/statistics/overview/top/alarms');
+    async fetchTopAlarmLevel(params: ITopAlarmLevelParams) {
+      const res = await request({
+        url: '/v1/statistics/overview/top/alarms',
+        params
+      });
       if (res.status === 'ok') {
         dispatch.topAlarmLevel.update({data:res.data});
       }

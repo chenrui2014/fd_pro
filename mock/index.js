@@ -32,20 +32,38 @@ module.exports = {
     status: 'ok',
     data: {
       'offline': 1,
-      'online': 2,
-      'total': 3
+      'online': 3,
+      'total': 6
     } 
   },
   'GET /v1/statistics/overview/active/device/count': (req, res) => {
     const { days } = req.params;
     console.log(days);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'count': 5,
           'time': 1584979200
+        }, {
+          'count': 15,
+          'time': 1585065600
+        }, {
+          'count': 8,
+          'time': 1585152000
+        }, {
+          'count': 25,
+          'time': 1585238400
+        }, {
+          'count': 10,
+          'time': 1585324800
+        }, {
+          'count': 54,
+          'time': 1585411200
+        }, {
+          'count': 23,
+          'time': 1585497600
         }
       ]
     });
@@ -54,9 +72,9 @@ module.exports = {
     const { days } = req.params;
     console.log(days);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'count': 211,
           'time': 1585411200
@@ -74,9 +92,9 @@ module.exports = {
     console.log(days);
     console.log(top);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'count': 3,
           'sn': 'BOECLOUD-CLOUD-1',
@@ -101,22 +119,32 @@ module.exports = {
     console.log(level);
     console.log(top);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
-          'count': 294,
-          'sn': 'IOT-SVC-DEVHBB4K9-161',
+          'count': 94,
+          'sn': 'IOT-161',
+          'time': 1585411200
+        },
+        {
+          'count': 264,
+          'sn': 'IOT-110',
           'time': 1585411200
         },
         {
           'count': 294,
-          'sn': 'IOT-SVC-DEVHBB4K9-110',
+          'sn': 'IOT-1',
           'time': 1585411200
         },
         {
-          'count': 294,
-          'sn': 'IOT-SVC-DEVHBB4K9-1',
+          'count': 154,
+          'sn': 'IOT-22',
+          'time': 1585411200
+        },
+        {
+          'count': 194,
+          'sn': 'IOT-12',
           'time': 1585411200
         }
       ]
@@ -128,24 +156,34 @@ module.exports = {
     console.log(level);
     console.log(top);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'count': 180,
-          'alertName': 'alert_memory_monitor',              
+          'alertName': 'alert_memory',              
           'time': 1585324800
         },
         {
           'count': 120,
-          'alertName': 'alert_load_monitor',              
+          'alertName': 'alert_load',              
           'time': 1585324800
         },
         {
           'count': 100,
-          'alertName': 'alert_offline_monitor',              
+          'alertName': 'alert_offline',              
           'time': 1585324800
-        }                        
+        },
+        {
+          'count': 200,
+          'alertName': 'alert_net',              
+          'time': 1585324800
+        },
+        {
+          'count': 140,
+          'alertName': 'alert_cmd',              
+          'time': 1585324800
+        }                          
       ]
     });
   },
@@ -154,9 +192,9 @@ module.exports = {
     const { days } = req.params;
     console.log(days);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'count': 180,
           'alertName': 'alert_memory_monitor',              
@@ -185,12 +223,28 @@ module.exports = {
     const { top } = req.params;
     console.log(top);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'count': 25,
-          'sn': 'PC-F9EED275941E-ROOT',
+          'sn': 'PC-5',
+          'time': 1585152000
+        },{
+          'count': 45,
+          'sn': 'PC-4',
+          'time': 1585152000
+        },{
+          'count': 15,
+          'sn': 'PC-3',
+          'time': 1585152000
+        },{
+          'count': 20,
+          'sn': 'PC-2',
+          'time': 1585152000
+        },{
+          'count': 33,
+          'sn': 'PC-1',
           'time': 1585152000
         }
       ]
@@ -201,9 +255,9 @@ module.exports = {
     const { top } = req.params;
     console.log(top);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'count': 25,
           'sn': 'PC-F9EED275941E-ROOT',
@@ -217,9 +271,9 @@ module.exports = {
     const { top } = req.params;
     console.log(top);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'count': 25,
           'command': 'hello',
@@ -229,13 +283,66 @@ module.exports = {
     });
   },
 
+  'GET /v1/iotserver/monitor/devices': (req, res) => {
+    const { sn,limit,page } = req.params;
+    console.log(sn);
+    console.log(limit);
+    console.log(page);
+    res.send({ 
+      status: 'ok',
+      code: 200,
+      data: {
+        'count': 2,
+        'limit': 10,
+        'list': [
+          {
+            'activeTime': 1586316066,
+            'addTime': 0,
+            'bootTime': 1586306124,
+            'dur': 626174,
+            'offlineTime': 1586316079,
+            'online': false,
+            'onlineTime': 1586316061,
+            'procs': '{"d":[{"mem":2380,"n":"daemon"},{"mem":4116,"n":"monitor"},{"err":"restarted","msg":"Run app successfully","n":"msghub"},{"err":"restarted","msg":"Run app successfully","n":"cmdhandler"}],"revtime":1586316061,"sn":"BOECLOUD-CLOUD-1","time":1586316061}',
+            'reg': '{"d":{"model":""},"revtime":1586316061,"sn":"BOECLOUD-CLOUD-1","time":1586316061}',
+            'regTime': 1586316061,
+            'sn': 'BOECLOUD-CLOUD-1',
+            'sys': '{"d":{"free":4429948,"load":0.22,"used":3236656},"revtime":1586314113,"sn":"BOECLOUD-CLOUD-1","time":1586314113}',
+            'tagIds': [],
+            'tagNames': [],
+            'versions': '{"d":[{"n":"monitor","v":"1.0.0 20200407-200916"},{"n":"msghub","v":"1.0.0 20200407-200916"},{"n":"cmdhandler","v":"1.0.0 20200407-200916"},{"n":"upgrade.cmd","v":"1.0.0 20200407-200916"},{"n":"logagent.cmd","v":"1.0.0 20200407-200916"}],"revtime":1586316066,"sn":"BOECLOUD-CLOUD-1","time":1586316066}'
+          },
+          {
+            'activeTime': 1586316066,
+            'addTime': 0,
+            'bootTime': 1586306124,
+            'dur': 626174,
+            'offlineTime': 1586316079,
+            'online': false,
+            'onlineTime': 1586316061,
+            'procs': '{"d":[{"mem":2380,"n":"daemon"},{"mem":4116,"n":"monitor"},{"err":"restarted","msg":"Run app successfully","n":"msghub"},{"err":"restarted","msg":"Run app successfully","n":"cmdhandler"}],"revtime":1586316061,"sn":"BOECLOUD-CLOUD-1","time":1586316061}',
+            'reg': '{"d":{"model":""},"revtime":1586316061,"sn":"BOECLOUD-CLOUD-1","time":1586316061}',
+            'regTime': 1586316061,
+            'sn': 'BOECLOUD-CLOUD-2',
+            'sys': '{"d":{"free":4429948,"load":0.22,"used":3236656},"revtime":1586314113,"sn":"BOECLOUD-CLOUD-1","time":1586314113}',
+            'tagIds': [],
+            'tagNames': [],
+            'versions': '{"d":[{"n":"monitor","v":"1.0.0 20200407-200916"},{"n":"msghub","v":"1.0.0 20200407-200916"},{"n":"cmdhandler","v":"1.0.0 20200407-200916"},{"n":"upgrade.cmd","v":"1.0.0 20200407-200916"},{"n":"logagent.cmd","v":"1.0.0 20200407-200916"}],"revtime":1586316066,"sn":"BOECLOUD-CLOUD-1","time":1586316066}'
+          }
+        ],
+        'page': 1,
+        'total': 20
+      }
+    });
+  },
+
   'GET /v1/statistics/overview/top/weak/wifi/devices': (req, res) => {
     const { top } = req.params;
     console.log(top);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'count': 25,
           'command': 'hello',
@@ -258,12 +365,30 @@ module.exports = {
     const { days } = req.params;
     console.log(days);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
-          'count': 5,
+          'count': 60,
           'time': 1584979200
+        }, {
+          'count': 78,
+          'time': 1585065600
+        }, {
+          'count': 83,
+          'time': 1585152000
+        }, {
+          'count': 45,
+          'time': 1585238400
+        }, {
+          'count': 110,
+          'time': 1585324800
+        }, {
+          'count': 64,
+          'time': 1585411200
+        }, {
+          'count': 123,
+          'time': 1585497600
         }
       ]
     });
@@ -273,9 +398,9 @@ module.exports = {
     const { days } = req.params;
     console.log(days);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'count': 211,
           'time': 1585411200
@@ -304,9 +429,9 @@ module.exports = {
     console.log(sn);
     console.log(hours);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'cpuLoad': 0.1,
           'memFree': 2345336,
@@ -318,9 +443,6 @@ module.exports = {
           'memFree': 2345364,
           'memUsed': 7317568,
           'time': 1585105802
-        },{
-          path: '/api',
-          component: require('.')
         },
         {
           'cpuLoad': 0.08,
@@ -337,9 +459,9 @@ module.exports = {
     console.log(sn);
     console.log(days);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'time': 1585106035,
           'topic': 'dma_report_on'
@@ -353,9 +475,9 @@ module.exports = {
     console.log(sn);
     console.log(days);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'time': 1585106035,
           'topic': 'dma_report_off'
@@ -369,9 +491,9 @@ module.exports = {
     console.log(sn);
     console.log(comp);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'time': 1585106295,
           'version': '1.0.0 20200323-091556'
@@ -385,9 +507,9 @@ module.exports = {
     console.log(sn);
     console.log(cmdId);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         [
           {
             'command': 'log_file_upload',
@@ -416,9 +538,9 @@ module.exports = {
     console.log(sn);
     console.log(days);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': [
+      status: 'ok',
+      code: 200,
+      data: [
         {
           'alertName': 'alert_load_monitor',
           'level': 'CRITICAL',
@@ -435,13 +557,85 @@ module.exports = {
     });
   },
 
+  'GET /v1/statistics/live/device/gps': (req, res) => {
+    const { sn } = req.params;
+    console.log(sn);
+    res.send({ 
+      status: 'ok',
+      code: 200,
+      data: [
+        {
+          'time': 1585106295,
+          'sn': 'SN-1',
+          'pos': '{"lat":40.57,"lng":116.9}',
+    
+        },
+        {
+          'time': 1585106295,
+          'sn': 'SN-2',
+          'pos': '{"lat":39.57,"lng":115.9}',
+        },
+        {
+          'time': 1585106295,
+          'sn': 'SN-3',
+          'pos': '{"lat":41.57,"lng":118.9}',
+        },
+        {
+          'time': 1585106295,
+          'sn': 'SN-4',
+          'pos': '{"lat":33.57,"lng":118.6}',
+        },
+        {
+          'time': 1585106295,
+          'sn': 'SN-5',
+          'pos': '{"lat":37.57,"lng":88.9}',
+        },
+        {
+          'time': 1585106295,
+          'sn': 'SN-6',
+          'pos': '{"lat":36.57,"lng":91.9}',
+        },
+        {
+          'time': 1585106295,
+          'sn': 'SN-7',
+          'pos': '{"lat":36.57,"lng":101.9}',
+        },
+        {
+          'time': 1585106295,
+          'sn': 'SN-8',
+          'pos': '{"lat":27.57,"lng":111.9}',
+        },
+        {
+          'time': 1585106295,
+          'sn': 'SN-9',
+          'pos': '{"lat":39.57,"lng":113.9}',
+        },
+        {
+          'time': 1585106295,
+          'sn': 'SN-10',
+          'pos': '{"lat":30.57,"lng":109.9}',
+        },
+        {
+          'time': 1585106295,
+          'sn': 'SN-11',
+          'pos': '{"lat":37.57,"lng":116.9}',
+        },
+        {
+          'time': 1585106295,
+          'sn': 'SN-12',
+          'pos': '{"lat":37.57,"lng":110.9}',
+        }
+      ]
+    });
+  },
+
   'GET /v1/deviceremotes/results/log': (req, res) => {
     const { id } = req.params;
     console.log(id);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': {
+      status: 'ok',
+      code: 200,
+      data: {
         'id': 1,
         'command': 'log_file_upload',
         'status': 1,
@@ -451,18 +645,14 @@ module.exports = {
     });
   },
 
-  // 支持标准 HTTP
-  'GET /api/users': { users: [1, 2] },
-  'DELETE /api/users': { users: [1, 2] },
-
   // 支持参数
   'POST /v1/deviceremotes/cmds/sh': (req, res) => {
     const { shell } = req.body;
     console.log(shell);
     res.send({ 
-      'status': 'ok',
-      'code': 200,
-      'data': {
+      status: 'ok',
+      code: 200,
+      data: {
         'sn': 'PC-F9EED275941E-ROOT', 
         'id': 20200415001
       }

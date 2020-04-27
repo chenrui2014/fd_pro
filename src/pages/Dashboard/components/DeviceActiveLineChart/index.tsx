@@ -73,7 +73,7 @@ export default function DeviceActiveLineChart(props: IDeviceActiveLineChartProps
       {
         name: seriesName,
         type: 'line',
-        smooth: true,
+        smooth: false,
         symbol: 'circle',
         symbolSize: 5,
         showSymbol: false,

@@ -23,6 +23,8 @@ const Dashboard = () => {
   const [peripheralDayActive, peripheralDayActiveDispatchers] = appStore.useModel('peripheralDayActive');
   const [deviceGps, deviceGpsDispatchers] = appStore.useModel('deviceGps');
   const [topCmdReceive, topCmdReceiveDispatchers] = appStore.useModel('topCmdReceive');
+  const [topAlarm, topAlarmDispatchers] = appStore.useModel('topAlarm');
+  const [topAlarmLevel, topAlarmLevelDispatchers] = appStore.useModel('topAlarmLevel');
   useEffect(() => {
     brokerStatsDispatchers.fetchBrokerStats();
     deviceCountDispatchers.fetchDevicesCount();
@@ -31,7 +33,10 @@ const Dashboard = () => {
     peripheralDayActiveDispatchers.fetchPeripheralDayActive({days:7});
     deviceGpsDispatchers.fetchDeviceGps({sn:'test'});
     topCmdReceiveDispatchers.fetchTopCmdReceive({top:5});
-  }, [brokerStatsDispatchers,deviceCountDispatchers,peripheralCountDispatchers,dayActiveDispatchers,peripheralDayActiveDispatchers,deviceGpsDispatchers,topCmdReceiveDispatchers]);
+    topAlarmDispatchers.fetchTopAlarm({top:5, level:'error'});
+    topAlarmLevelDispatchers.fetchTopAlarmLevel({top:5,level:'error'});
+  }, [brokerStatsDispatchers,deviceCountDispatchers,peripheralCountDispatchers,dayActiveDispatchers,peripheralDayActiveDispatchers,deviceGpsDispatchers,
+    topCmdReceiveDispatchers,topAlarmDispatchers,topAlarmLevelDispatchers]);
 
   const geoCoordMapData: IGeoCoordMapData = {}
 
@@ -64,7 +69,14 @@ const Dashboard = () => {
                 return dataItem
               })} /></Col></Row>
             </Col>
-            <Col fixedSpan={12} style={{height:'100vh',lineHeight:'100vh'}}>统计</Col>
+            <Col fixedSpan={12} style={{height:'100vh',lineHeight:'100vh'}}>
+              <Row><Col><DeviceBarChart title="发生告警最多设备top5" seriesName="告警数" data={_.sortBy(topAlarm.data, function(item){
+                return -item.count
+              }).map(item => item.count)} yAxisData={topAlarm.data.map(item => item.sn)} /></Col></Row>
+              <Row><Col><DeviceBarChart title="告警最多类型top5" seriesName="告警数" data={_.sortBy(topAlarmLevel.data, function(item){
+                return -item.count
+              }).map(item => item.count)} yAxisData={topAlarmLevel.data.map(item => item.alertName)} /></Col></Row>
+            </Col>
           </Row>
         </div>
       </Cell>
