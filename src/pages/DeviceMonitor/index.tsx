@@ -1,14 +1,26 @@
-import React from 'react';
-import {Tab, ResponsiveGrid } from '@alifd/next';
+import React, {useEffect} from 'react';
+import {store as appStore } from 'ice';
+import {Tab, ResponsiveGrid,Grid } from '@alifd/next';
+import moment from 'moment';
+import 'moment/locale/zh-cn';
 import DeviceTable from './components/DeviceTable';
+import DeviceLoadLineChart from './components/DeviceLoadLineChart';
+import DeviceMemLineChart from './components/DeviceMemLineChart';
 
 function onChange(key) {
   console.log(key);
 }
 
 const { Cell } = ResponsiveGrid;
-
+const {Row,Col}=Grid;
 const DeviceMonitor = () => {
+
+  const [memLoad, memLoadDispatcher ]= appStore.useModel('memLoad');
+
+  useEffect(() =>{
+    memLoadDispatcher.fetchMemLoad({sn:'',hours:1});
+  },[memLoadDispatcher]);
+
   return (
     <ResponsiveGrid gap={20}>
       <Cell colSpan={12} style={{textAlign:'center'}}>
@@ -17,7 +29,10 @@ const DeviceMonitor = () => {
             <DeviceTable />
           </Tab.Item>
           <Tab.Item title='运行状态' key='runStatus'>
-        运行状态
+            <Row><Col>
+              <DeviceLoadLineChart title='系统负载曲线' seriesName='cpu负载' data={memLoad.data.map(item => item.cpuLoad)} xAxisData={memLoad.data.map(item =>moment(item.time * 1000).format('HH:mm'))} />
+            </Col><Col><DeviceMemLineChart title='系统内存曲线' seriesName='已使用' memUsedData={memLoad.data.map(item => item.memUsed)} memFreeData={memLoad.data.map(item => item.memFree)} xAxisData={memLoad.data.map(item =>moment(item.time * 1000).format('HH:mm'))} /></Col>
+            </Row>
           </Tab.Item>
           <Tab.Item title='日志上传' key='logUpload'>
         日志上传

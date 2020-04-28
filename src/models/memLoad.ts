@@ -1,5 +1,9 @@
 import { request,IRootDispatch } from 'ice';
 
+interface IMemloadParams {
+  sn: string;
+  hours: number;
+}
 interface IMemLoad {
   cpu_load: number;
   mem_free: number;
@@ -13,7 +17,7 @@ interface IMemLoadState {
 
 export default {
   state: {
-    data:{
+    data:[{
     // eslint-disable-next-line @typescript-eslint/camelcase
       cpu_load: 0,
       // eslint-disable-next-line @typescript-eslint/camelcase
@@ -21,11 +25,14 @@ export default {
       // eslint-disable-next-line @typescript-eslint/camelcase
       mem_used: 0,
       time: 0,
-    }
+    }]
   },
   effects: (dispatch: IRootDispatch) =>({
-    async fetchMemLoad() {
-      const res = await request('/statistics/device/sys/history');
+    async fetchMemLoad(params: IMemloadParams) {
+      const res = await request({
+        url: '/v1/statistics/device/sys/history', 
+        params
+      });
       if (res.status === 'ok') {
         dispatch.memLoad.update({data: res.data});
       }

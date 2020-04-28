@@ -440,14 +440,14 @@ module.exports = {
         },
         {
           'cpuLoad': 0.09,
-          'memFree': 2345364,
-          'memUsed': 7317568,
+          'memFree': 3345364,
+          'memUsed': 6317568,
           'time': 1585105802
         },
         {
           'cpuLoad': 0.08,
-          'memFree': 2345412,
-          'memUsed': 7319112,
+          'memFree': 2745412,
+          'memUsed': 6919112,
           'time': 1585105807
         }
       ]
