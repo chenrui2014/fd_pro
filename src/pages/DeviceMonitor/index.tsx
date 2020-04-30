@@ -8,6 +8,7 @@ import DeviceTable from './components/DeviceTable';
 import DeviceLoadLineChart from './components/DeviceLoadLineChart';
 import DeviceMemLineChart from './components/DeviceMemLineChart';
 import DeviceOnlineHistory from './components/DeviceOnlineHistory';
+import DeviceVersionList from './components/DeviceVersionList';
 
 function onChange(key) {
   console.log(key);
@@ -39,11 +40,10 @@ const DeviceMonitor = () => {
   const data: [number,number,number][] = []
   for(let i = yCates.length-1; i >= 0 ; i--){
     for(let j=0; j<xCates.length; j++){
-      const startTime = moment(`${yCates[i]} ${xCates[j]}`);
-      const endTime = startTime.add(1,'hours');
+      const startTime = moment(`${yCates[i]} ${xCates[j]}`,'YYYY年MM月DD日 HH:mm');
       let count = 0;
       historyData.forEach(item =>{
-        if(startTime.unix() < item.time  && item.time < endTime.unix()){
+        if(startTime.unix() < item.time  && item.time < (startTime.unix() + 3600)){
           count++;
         }
       });
@@ -64,8 +64,9 @@ const DeviceMonitor = () => {
             </Row>
             <Row><Col>
               <DeviceOnlineHistory title='设备上(离)线历史' seriesName='离线次数' xCates={xCates} 
-                yCates={yCates} data={data} />
+                yCates={yCates} data={data} historyData={historyData} />
             </Col></Row>
+            <Row><Col><DeviceVersionList /></Col></Row>
           </Tab.Item>
           <Tab.Item title='日志上传' key='logUpload'>
         日志上传

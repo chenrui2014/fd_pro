@@ -542,6 +542,27 @@ module.exports = {
           'time': 1587825571,
           'topic': 'dma_report_off'
         }, {
+          'time': 1587866400,
+          'topic': 'dma_report_off'
+        }, {
+          'time': 1587866500,
+          'topic': 'dma_report_off'
+        }, {
+          'time': 1587866600,
+          'topic': 'dma_report_off'
+        }, {
+          'time': 1587866700,
+          'topic': 'dma_report_off'
+        }, {
+          'time': 1587866800,
+          'topic': 'dma_report_off'
+        }, {
+          'time': 1587866900,
+          'topic': 'dma_report_off'
+        }, {
+          'time': 1587867000,
+          'topic': 'dma_report_off'
+        }, {
           'time': 1587912071,
           'topic': 'dma_report_off'
         }, {
@@ -569,6 +590,18 @@ module.exports = {
         {
           'time': 1585106295,
           'version': '1.0.0 20200323-091556'
+        },{
+          'time': 1585109295,
+          'version': '1.0.0 20200323-091566'
+        },{
+          'time': 1585116295,
+          'version': '1.0.0 20200323-091576'
+        },{
+          'time': 1585136295,
+          'version': '1.0.0 20200323-091586'
+        },{
+          'time': 1585146295,
+          'version': '1.0.0 20200323-091596'
         }
       ]
     });

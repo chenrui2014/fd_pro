@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '@alifd/next';
 import ReactEcharts from 'echarts-for-react';
+import {IDeviceOnlineHistory} from '../../../../models/deviceOnlineHistory';
 
 interface IDeviceOnlineHistoryProps {
   title: string;
@@ -8,22 +9,25 @@ interface IDeviceOnlineHistoryProps {
   yCates: string[];
   xCates: string[];
   data: [number,number,number][];
+  historyData: IDeviceOnlineHistory[];
 }
 export default function DeviceOnlineHistory(props: IDeviceOnlineHistoryProps){
-  const {title, seriesName,yCates, xCates, data} = props;
+  const {title, seriesName,yCates, xCates, data, historyData} = props;
   const DEFAULT_OPTION = {
     backgroundColor: '#394056',
     visualMap: {
-      min: 1,
+      min: 0,
       max: 10,
       calculable: true,
       orient: 'horizontal',
       left: 'center',
-      bottom: '30%',
+      bottom: '10%',
       inRange: {
-        color: ['#196027','#239a3b', '#7bc96f',  '#c6e48b', '#ebedf0']
+        color: [  '#286E2A','#D56869']
       },
-      show: false
+      text: {
+        color:  '#F1F1F3'
+      }
     },
     title:{
       text: title,
@@ -35,7 +39,10 @@ export default function DeviceOnlineHistory(props: IDeviceOnlineHistoryProps){
       left: '6%'
     },
     tooltip: {
-      position: 'top'
+      position: 'top',
+      formatter(params){
+        return `离线时间:<br/>${params.data[0]},${params.data[1]},${params.data[2]}`
+      }
     },
     animation: false,
     grid: {

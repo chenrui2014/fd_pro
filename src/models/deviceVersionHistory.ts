@@ -1,5 +1,12 @@
 import { request, IRootDispatch } from 'ice';
 
+
+interface IDeviceVersionParams {
+  sn: string;
+  comp: string;
+  limit: number;
+  page: number;
+}
 interface IDeviceVersion {
   version: string;
   time: number;
@@ -11,14 +18,17 @@ interface IDeviceVersionState {
 
 export default {
   state: {
-    data:{
+    data:[{
       version: '',
       time: 0,
-    }
+    }]
   },
   effects: (dispatch: IRootDispatch) => ({
-    async fetchDeviceVersionHistory() {
-      const res = await request('/statistics/device/version/history');
+    async fetchDeviceVersionHistory(params: IDeviceVersionParams) {
+      const res = await request({
+        url:'/v1/statistics/device/version/history', 
+        params
+      });
       if (res.status === 'ok') {
         dispatch.deviceVersionHistory.update({data: res.data});
       }

@@ -1,5 +1,9 @@
 import { request, IRootDispatch } from 'ice';
 
+interface IDeviceOfflineHistoryParams {
+  sn: string;
+  days: number;
+}
 interface IDeviceOfflineHistory {
   topic: string;
   time: number;
@@ -11,14 +15,17 @@ interface IDeviceOfflineHistoryState {
 
 export default {
   state: {
-    data:{
+    data:[{
       topic: '',
       time: 0,
-    }
+    }]
   },
   effects: (dispatch: IRootDispatch) => ({
-    async fetchDeviceOfflineHistory() {
-      const res = await request('/statistics/device/offline/history');
+    async fetchDeviceOfflineHistory(params: IDeviceOfflineHistoryParams) {
+      const res = await request({
+        url:'/v1/statistics/device/offline/history',
+        params
+      });
       if (res.status === 'ok') {
         dispatch.deviceOfflineHistory.update({data: res.data});
       }
