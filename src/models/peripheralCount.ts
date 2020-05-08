@@ -19,7 +19,7 @@ export default {
   },
   effects: (diapatch: IRootDispatch) =>({
     async fetchPeripheralCount() {
-      const res = await request('/v1/monitor/devices/peripherals/count');
+      const res = await request('/v1/iotserver/monitor/devices/peripherals/count');
       if (res.status === 'ok') {
         diapatch.peripheralCount.update({data:res.data});
       }

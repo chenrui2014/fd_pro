@@ -20,7 +20,7 @@ export default {
   },
   effects: (dispatch: IRootDispatch) =>({
     async fetchDevicesCount() {
-      const res = await request('/v1/monitor/devices/count');
+      const res = await request('/v1/iotserver/monitor/devices/count');
       if (res.status === 'ok') {
         dispatch.deviceCount.update({data: res.data});
       }
