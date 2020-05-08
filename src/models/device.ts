@@ -1,6 +1,6 @@
 import { request, IRootDispatch } from 'ice';
 
-interface IDevice {
+export interface IDevice {
   activeTime: number;
   addTime: number;
   bootTime: number;

@@ -1,24 +1,41 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {store as appStore } from 'ice';
 import {Tab, ResponsiveGrid,Grid } from '@alifd/next';
 import _ from 'lodash';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
+import DeviceStatus from './components/DeviceStatus';
 import DeviceTable from './components/DeviceTable';
 import DeviceLoadLineChart from './components/DeviceLoadLineChart';
 import DeviceMemLineChart from './components/DeviceMemLineChart';
 import DeviceOnlineHistory from './components/DeviceOnlineHistory';
 import DeviceVersionList from './components/DeviceVersionList';
-
-function onChange(key) {
-  console.log(key);
-}
+import {IDevice} from '../../models/device';
 
 const { Cell } = ResponsiveGrid;
 const {Row,Col}=Grid;
 const days = 7;
+const DEFAULT_DEVICE: IDevice = {
+  activeTime: 1586316066000,
+  addTime: 1586316066000,
+  bootTime: 1586316066000,
+  dur: 626174,
+  offlineTime: 1586316066000,
+  online: false,
+  onlineTime: 1586316066000,
+  procs: '',
+  reg: '',
+  regTime: 1586316066000,
+  sn: '',
+  sys: '',
+  tagIds: [],
+  tagNames: [],
+  versions: '',
+}
 const DeviceMonitor = () => {
 
+  const [tabKey, setTabKey] = useState('deviceList');
+  const [device,setDevice] = useState(DEFAULT_DEVICE);
   const [memLoad, memLoadDispatcher ]= appStore.useModel('memLoad');
   const [deviceOfflineHistory, deviceOfflineHistoryDispatcher] = appStore.useModel('deviceOfflineHistory');
   const [deviceOnlineHistory, deviceOnlineHistoryDispatcher] = appStore.useModel('deviceOnlineHistory');
@@ -50,14 +67,24 @@ const DeviceMonitor = () => {
       data.push([j,i,count]);
     }
   }
+
+  const onChange = (key) => {
+    console.log(key);
+    setTabKey(key)
+  }
+  const selectDevice = (selDevice: IDevice)=>{
+    setDevice(selDevice);
+  }
+
   return (
     <ResponsiveGrid gap={20}>
       <Cell colSpan={12} style={{textAlign:'center'}}>
-        <Tab size='small' shape='capsule' onChange={onChange}>
+        <Tab size='small' shape='capsule' activeKey={tabKey} onChange={onChange}>
           <Tab.Item title='所有设备' key='deviceList'>
-            <DeviceTable />
+            <DeviceTable changeTab={onChange} selectDevice={selectDevice} />
           </Tab.Item>
           <Tab.Item title='运行状态' key='runStatus'>
+            <Row><Col><DeviceStatus device={device} /></Col></Row>
             <Row><Col>
               <DeviceLoadLineChart title='系统负载曲线' seriesName='cpu负载' data={memLoad.data.map(item => item.cpuLoad)} xAxisData={memLoad.data.map(item =>moment(item.time * 1000).format('HH:mm'))} />
             </Col><Col><DeviceMemLineChart title='系统内存曲线' seriesName='已使用' memUsedData={memLoad.data.map(item => item.memUsed)} memFreeData={memLoad.data.map(item => item.memFree)} xAxisData={memLoad.data.map(item =>moment(item.time * 1000).format('HH:mm'))} /></Col>

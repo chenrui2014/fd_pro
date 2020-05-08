@@ -37,7 +37,7 @@ export default function DeviceActiveLineChart(props: IDeviceActiveLineChartProps
     },
     xAxis: [{
       type: 'category',
-      boundaryGap: ['10%','10%'], // 坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
+      boundaryGap: false, // 坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
       splitNumber:7,
       axisLine: {
         lineStyle: {

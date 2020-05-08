@@ -13,7 +13,13 @@ const FormItem = Form.Item;
 
 const limit = 10;
 
-const DeviceTable = () => {
+interface IDeviceTableProps {
+  changeTab?: (tabKey: string) => void;
+  selectDevice?: (record: object) => void;
+}
+
+const DeviceTable = (props: IDeviceTableProps) => {
+  const {changeTab=()=>{},selectDevice=()=>{}}=props;
   const [loading, setLoading] = useState(true);
   const [deviceCode, setDeviceCode] = useState('');
   const [status, setStatus] = useState('');
@@ -50,8 +56,12 @@ const DeviceTable = () => {
     setDeviceCode('');
   }
 
-  const onStatusChange = (value) =>{
+  const onStatusChange = (value) => {
     setStatus(value);
+  }
+
+  const onClick = (e) => {
+    changeTab(e.target.offsetParent.name);
   }
 
   const renderStatus = (value, index, record) => {
@@ -84,6 +94,9 @@ const DeviceTable = () => {
       render:renderTime
     }
   ];
+  const onRowClick = (record,index,e) =>{
+    selectDevice(device.data.list[index]);
+  }
 
   return (
     <Row>
@@ -117,6 +130,7 @@ const DeviceTable = () => {
             <Table dataSource={tableData}
               isZebra
               rowSelection={{ columnProps: () => ({ lock: 'left' }) }}
+              onRowClick={onRowClick}
             >
               {
                 columnProps.map(col =>(
@@ -129,19 +143,19 @@ const DeviceTable = () => {
               }
               <Table.Column
                 title="操作"
-                cell={() => (
+                cell={(value, index, record) => (
                   <div className={styles.opt}>
-                    <Button type="primary" text>状态</Button>
+                    <Button name='runStatus' type="primary" text onClick={onClick}>状态</Button>
                     <Divider direction="ver" />
-                    <Button type="primary" text>日志上传</Button>
+                    <Button name='logUpload' type="primary" text onClick={onClick}>日志上传</Button>
                     <Divider direction="ver" />
-                    <Button type="primary" text>实时日志</Button>
+                    <Button name='realTimeLog' type="primary" text onClick={onClick}>实时日志</Button>
                     <Divider direction="ver" />
-                    <Button type="primary" text>shell</Button>
+                    <Button name='remoteShell' type="primary" text onClick={onClick}>shell</Button>
                     <Divider direction="ver" />
-                    <Button type="primary" text>命令</Button>
+                    <Button name='cmdSearch' type="primary" text onClick={onClick}>命令</Button>
                     <Divider direction="ver" />
-                    <Button type="primary" text>告警</Button>
+                    <Button name='deviceWarn' type="primary" text onClick={onClick}>告警</Button>
                   </div>
                 )}
               />

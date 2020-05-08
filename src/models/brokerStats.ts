@@ -1,4 +1,4 @@
-import { request, IRootDispatch } from 'ice';
+import { request, IRootDispatch, config } from 'ice';
 
 export interface IMetrics {
   messageSentCount: number;
@@ -40,7 +40,7 @@ export default {
   },
   effects: (dispatch: IRootDispatch) => ({
     async fetchBrokerStats() {
-      const res = await request('/v1/monitor/brokers/stats');
+      const res = await request('/v1/iotserver/monitor/brokers/stats');
       dispatch.brokerStats.update({data: res.data});
     },
   }),
