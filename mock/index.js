@@ -1,16 +1,6 @@
 module.exports = {
-  'GET /v1/profile': { 
-    status:'ok',
-    data: [{
-      'name': 'test',
-      'department': 'test2',
-      'avatar': 'test1',
-      'userid': 101347,
-    },
-    ]
-  },
   // 获得mqtt代理状态
-  'GET /v1/monitor/brokers/stats': { 
+  'GET /v1/iotserver/monitor/brokers/stats': { 
     status:'ok',
     data: {
       'metrics': {
@@ -28,7 +18,7 @@ module.exports = {
       } },
   },
   // 获得设备在线统计
-  'GET /v1/monitor/devices/count':  {
+  'GET /v1/iotserver/monitor/devices/count':  {
     status: 'ok',
     data: {
       'offline': 1,
@@ -301,7 +291,7 @@ module.exports = {
             'bootTime': 1586306124,
             'dur': 626174,
             'offlineTime': 1586316079,
-            'online': false,
+            'online': true,
             'onlineTime': 1586316061,
             'procs': '{"d":[{"mem":2380,"n":"daemon"},{"mem":4116,"n":"monitor"},{"err":"restarted","msg":"Run app successfully","n":"msghub"},{"err":"restarted","msg":"Run app successfully","n":"cmdhandler"}],"revtime":1586316061,"sn":"BOECLOUD-CLOUD-1","time":1586316061}',
             'reg': '{"d":{"model":""},"revtime":1586316061,"sn":"BOECLOUD-CLOUD-1","time":1586316061}',
@@ -352,7 +342,7 @@ module.exports = {
     });
   },
 
-  'GET /v1/monitor/devices/peripherals/count':  {
+  'GET /v1/iotserver/monitor/devices/peripherals/count':  {
     status: 'ok',
     data: {
       'offline': 1,

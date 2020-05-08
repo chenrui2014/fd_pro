@@ -1,8 +1,6 @@
 import React from 'react';
-import {Box,Grid,Tag} from '@alifd/next';
+import {Box,Tag} from '@alifd/next';
 import {IDevice} from '../../../../models/device';
-
-const {Row,Col} = Grid;
 
 interface IDeviceStatusProps {
   device: IDevice;
@@ -27,7 +25,7 @@ const DeviceStatus = (props: IDeviceStatusProps) =>{
   };
   return (
     <Box direction="row" justify="flex-end" spacing={10} margin={[5]}>
-      <Tag type="normal" size="large">{device.sn}</Tag>{device.online ? <Tag type="normal" size="large" color="green">在线</Tag> : <Tag type="normal" size="large" color="#a6a6a6">离线({durDesc(device.dur)})</Tag>}
+      <Tag type="normal" size="large">{device.sn}</Tag>{device.online ? <Tag type="normal" size="large" color="green">在线({durDesc(device.dur)})</Tag> : <Tag type="normal" size="large" color="#a6a6a6">离线({durDesc(device.dur)})</Tag>}
     </Box>
   );
 }

@@ -83,7 +83,8 @@ const DeviceTable = (props: IDeviceTableProps) => {
       render:renderStatus
     },{
       key:'mem',
-      title:'内存',render:(value,index,record) =>value
+      title:'内存',
+      render:(value,index,record) =>value
     },{
       key:'load',
       title:'负载',
@@ -143,7 +144,7 @@ const DeviceTable = (props: IDeviceTableProps) => {
               }
               <Table.Column
                 title="操作"
-                cell={(value, index, record) => (
+                cell={() => (
                   <div className={styles.opt}>
                     <Button name='runStatus' type="primary" text onClick={onClick}>状态</Button>
                     <Divider direction="ver" />
