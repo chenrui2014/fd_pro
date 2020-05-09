@@ -11,7 +11,7 @@ const { Cell } = ResponsiveGrid;
 const { Option } = Select;
 const FormItem = Form.Item;
 
-const limit = 10;
+const limit = 20;
 
 interface IDeviceTableProps {
   changeTab?: (tabKey: string) => void;
@@ -27,7 +27,7 @@ const DeviceTable = (props: IDeviceTableProps) => {
   const [device, deviceDispatchers] = appStore.useModel('device');
 
   useEffect(() =>{
-    deviceDispatchers.fetchDevice({sn:'',limit,page:1});
+    deviceDispatchers.fetchDevice({limit,page:1});
     setLoading(false);
   },[deviceCode, deviceDispatchers, page]);
 
@@ -42,13 +42,13 @@ const DeviceTable = (props: IDeviceTableProps) => {
   const onPaginationChange = (value) => {
     setLoading(true);
     setPage(value);
-    deviceDispatchers.fetchDevice({sn:'',limit,page});
+    deviceDispatchers.fetchDevice({limit,page});
     setLoading(false);
   };
 
   const onSearch = () => {
     setLoading(true);
-    deviceDispatchers.fetchDevice({sn:deviceCode,limit:10,page:1});
+    deviceDispatchers.fetchDevice({sn:deviceCode,limit,page:1});
     setLoading(false);
   };
 
@@ -143,7 +143,7 @@ const DeviceTable = (props: IDeviceTableProps) => {
               }
               <Table.Column
                 title="操作"
-                cell={(value, index, record) => (
+                cell={() => (
                   <div className={styles.opt}>
                     <Button name='runStatus' type="primary" text onClick={onClick}>状态</Button>
                     <Divider direction="ver" />
@@ -164,7 +164,7 @@ const DeviceTable = (props: IDeviceTableProps) => {
               <div className={styles.total}>
               共<span>{device.data.total}</span>条需求
               </div>
-              <Pagination pageSize={device.data.limit}  total={device.data.total} onChange={onPaginationChange} />
+              <Pagination pageSize={limit}  total={device.data.total} onChange={onPaginationChange} />
             </Box>
           </Loading>
         </div>

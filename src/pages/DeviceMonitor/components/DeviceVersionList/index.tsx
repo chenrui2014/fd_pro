@@ -3,6 +3,7 @@ import {store as appStore} from 'ice';
 import {Table, Grid, Box,Form, Pagination, Select, Loading} from '@alifd/next';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
+import {IDevice} from '../../../../models/device';
 
 import styles from './index.module.scss';
 
@@ -12,16 +13,21 @@ const FormItem = Form.Item;
 
 const limit = 10;
 
-const DeviceVersionList = () => {
+interface IDeviceVersionListProps {
+  device: IDevice;
+}
+
+const DeviceVersionList = (props: IDeviceVersionListProps) => {
+  const {device} = props;
   const [loading, setLoading] = useState(true);
   const [comp, setComp] = useState('');
   const [page, setPage] = useState(1);
   const [deviceVersionHistory, deviceVersionHistoryDispatchers] = appStore.useModel('deviceVersionHistory');
 
   useEffect(() =>{
-    deviceVersionHistoryDispatchers.fetchDeviceVersionHistory({sn:'', limit,comp,page:1});
+    deviceVersionHistoryDispatchers.fetchDeviceVersionHistory({sn:device.sn, limit,comp,page:1});
     setLoading(false);
-  },[comp, deviceVersionHistoryDispatchers, page]);
+  },[comp, deviceVersionHistoryDispatchers, page, device]);
 
   const onPaginationChange = (value) => {
     setLoading(true);

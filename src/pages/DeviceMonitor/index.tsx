@@ -41,10 +41,12 @@ const DeviceMonitor = () => {
   const [deviceOnlineHistory, deviceOnlineHistoryDispatcher] = appStore.useModel('deviceOnlineHistory');
 
   useEffect(() =>{
-    memLoadDispatcher.fetchMemLoad({sn:'',hours:1});
-    deviceOfflineHistoryDispatcher.fetchDeviceOfflineHistory({sn:'',days});
-    deviceOnlineHistoryDispatcher.fetchDeviceOnlineHistory({sn:'',days});
-  },[memLoadDispatcher,deviceOfflineHistoryDispatcher,deviceOnlineHistoryDispatcher]);
+    if(!_.isEmpty(device.sn)){
+      memLoadDispatcher.fetchMemLoad({sn:device.sn,hours:1});
+      deviceOfflineHistoryDispatcher.fetchDeviceOfflineHistory({sn:device.sn,days});
+      deviceOnlineHistoryDispatcher.fetchDeviceOnlineHistory({sn:device.sn,days});
+    }
+  },[memLoadDispatcher,deviceOfflineHistoryDispatcher,deviceOnlineHistoryDispatcher,device]);
 
   const historyData = _.sortBy(deviceOnlineHistory.data.concat(deviceOfflineHistory.data),function(item){
     return -item.time;
@@ -93,7 +95,7 @@ const DeviceMonitor = () => {
               <DeviceOnlineHistory title='设备上(离)线历史' seriesName='离线次数' xCates={xCates} 
                 yCates={yCates} data={data} historyData={historyData} />
             </Col></Row>
-            <Row><Col><DeviceVersionList /></Col></Row>
+            <Row><Col><DeviceVersionList device={device} /></Col></Row>
           </Tab.Item>
           <Tab.Item title='日志上传' key='logUpload'>
         日志上传

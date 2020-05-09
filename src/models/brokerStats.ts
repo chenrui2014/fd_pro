@@ -1,4 +1,4 @@
-import { request, IRootDispatch, config } from 'ice';
+import { request, IRootDispatch } from 'ice';
 
 export interface IMetrics {
   messageSentCount: number;
