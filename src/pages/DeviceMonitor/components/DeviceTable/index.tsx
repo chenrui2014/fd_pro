@@ -83,7 +83,8 @@ const DeviceTable = (props: IDeviceTableProps) => {
       render:renderStatus
     },{
       key:'mem',
-      title:'内存',render:(value,index,record) =>value
+      title:'内存',
+      render:(value,index,record) =>value
     },{
       key:'load',
       title:'负载',
